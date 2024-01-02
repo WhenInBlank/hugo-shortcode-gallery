@@ -36,6 +36,8 @@
 
 {{ $thumbnailHoverEffect := .Get "thumbnailHoverEffect" | default (.Site.Params.galleryThumbnailHoverEffect | default "none") }}
 
+{{ $showCaptions := .Get "showCaptions" | default (.Site.Params.showCaptions | default true) }}
+
 <!-- hugos image processing saves images at resources/_gen/images, if the property resourceDir
 	 is changed in hugos config.toml file the images are save <resourceDir>/_gen/images.
 	 Because it is not possible to access the value of resourceDir, users who change resourceDir also have to change
@@ -243,7 +245,7 @@ Ordinal: {{ .Ordinal}}
 			randomize : {{ $randomize }},
 			waitThumbnailsLoad : false,
 			lastRow : {{ $lastRowJustification }},
-			captions : false,
+			captions : {{ $showCaptions }},
 			// if there is at least one filter option
 			{{ if not (eq $filterOptions "[]") }}
 				// we first show no images at all
